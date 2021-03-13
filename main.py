@@ -24,6 +24,8 @@ TEXT_COLOR1=COLOR3
 TEXT_COLOR2=COLOR4
 TEXT_COLOR3="#e84a5f"
 
+FONT=("Cuurier", 40)
+
 class TypingSpeedTestGUI(Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -40,18 +42,18 @@ class TypingSpeedTestGUI(Frame):
     def init_widget(self):
         self.frame = Frame(width=400, height=300, bg=FRAME_BG_COLOR)
         self.frame.pack(fill=BOTH)
-        self.input_label = Label(width=20, fg=TEXT_COLOR1, bg=FRAME_BG_COLOR)
+        self.input_label = Label(width=20, fg=TEXT_COLOR1, bg=FRAME_BG_COLOR, font=FONT)
         self.input_label.pack(padx=10, pady=10)
 
-        self.main_label1 = Label(self.frame, fg=TEXT_COLOR1, bg=FRAME_BG_COLOR)
+        self.main_label1 = Label(self.frame, fg=TEXT_COLOR1, bg=FRAME_BG_COLOR, font=FONT)
         self.main_label1.pack()
-        self.main_label2 = Label(self.frame, fg=TEXT_COLOR1, bg=FRAME_BG_COLOR)
+        self.main_label2 = Label(self.frame, fg=TEXT_COLOR1, bg=FRAME_BG_COLOR, font=FONT)
         self.main_label2.pack()
-        self.main_label3 = Label(self.frame, fg=TEXT_COLOR1, bg=FRAME_BG_COLOR)
+        self.main_label3 = Label(self.frame, fg=TEXT_COLOR1, bg=FRAME_BG_COLOR, font=FONT)
         self.main_label3.pack()
-        self.main_label4 = Label(self.frame, fg=TEXT_COLOR1, bg=FRAME_BG_COLOR)
+        self.main_label4 = Label(self.frame, fg=TEXT_COLOR1, bg=FRAME_BG_COLOR, font=FONT)
         self.main_label4.pack()
-        self.main_label5 = Label(self.frame, fg=TEXT_COLOR1, bg=FRAME_BG_COLOR)
+        self.main_label5 = Label(self.frame, fg=TEXT_COLOR1, bg=FRAME_BG_COLOR, font=FONT)
         self.main_label5.pack()
 
     def init_message(self):
@@ -65,15 +67,18 @@ class TypingSpeedTestGUI(Frame):
         else:
             key = event.char
         print(f"key pressed: keysym({event.keysym}), char({key})")
-
         if key == " ":
-            self.input_string = ""
+            self.finish_input_string()
         else:
-            self.input_string += key
-        if self.input_string == "":
-            self.input_label.config(text="input box", fg=TEXT_COLOR1)
-        else:
-            self.input_label.config(text=self.input_string, fg=TEXT_COLOR2)
+            self.update_intput_string(key)
+
+    def update_intput_string(self, char):
+        self.input_string += char
+        self.input_label.config(text=self.input_string, fg=TEXT_COLOR2)
+
+    def finish_input_string(self):
+        self.input_string = ""
+        self.input_label.config(text="input box", fg=TEXT_COLOR1)
 
 root = Tk()
 app = TypingSpeedTestGUI(master=root)
