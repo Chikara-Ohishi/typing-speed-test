@@ -72,12 +72,12 @@ class TypingSpeedTestGUI(Frame):
             if key == " ":
                 self.finish_input_string()
             else:
-                self.update_intput_string(key)
+                self.update_input_string(key)
 
             header_text = f"Type Count: {self.n_char}, Correct Word: {self.n_ok}"
             self.top_label.config(text=header_text)
 
-    def update_intput_string(self, char):
+    def update_input_string(self, char):
         self.input_string += char
         self.input_label.config(text=self.input_string, fg=TEXT_COLOR2)
 
